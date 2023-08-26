@@ -1,0 +1,10 @@
+{
+  "headwind.sortOnSave": true,
+  "headwind.runOnSave": true,
+  "headwind.prependCustomClasses": false,
+  "headwind.classRegex": [
+    "class:\\s*['\"]([^'\"]*)['\"]",
+    "className:\\s*['\"]([^'\"]*)['\"]",
+    "ngClass:\\s*['\"]([^'\"]*)['\"]"
+  ]
+}
