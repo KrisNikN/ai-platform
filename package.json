@@ -8,6 +8,12 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "lint-staged": {
+    "*/.{js,jsx,ts,tsx}": [
+      "npx prettier --write",
+      "npx eslint --fix"
+    ]
+  },
   "dependencies": {
     "@clerk/nextjs": "^4.23.2",
     "@hookform/resolvers": "^3.3.0",
@@ -56,6 +62,7 @@
     "eslint-plugin-tailwindcss": "^3.13.0",
     "headwind": "^0.0.0",
     "husky": "^8.0.3",
+    "lint-staged": "^14.0.1",
     "prettier": "^3.0.2",
     "prisma": "^5.2.0"
   }
