@@ -9,21 +9,15 @@ interface HeadingProps {
   bgColor?: string;
 }
 
-const Heading = ({
-  description,
-  icon: Icon,
-  title,
-  bgColor,
-  iconColor,
-}: HeadingProps) => {
+const Heading = ({ description, icon: Icon, title, bgColor, iconColor }: HeadingProps) => {
   return (
-    <div className="px-4 lg:px-8 flex items-center gap-x-3 mb-8">
-      <div className={cn("p-2 w-fit rounded-md", bgColor)}>
-        <Icon className={cn("w-10 h-10 ", iconColor)} />
+    <div className='mb-8 flex items-center gap-x-3 px-4 lg:px-8'>
+      <div className={cn("w-fit rounded-md p-2", bgColor)}>
+        <Icon className={cn("h-10 w-10 ", iconColor)} />
       </div>
       <div>
-        <h2 className="text-3xl font-bold">{title}</h2>
-        <p className="text-sm text-muted-foreground">{description}</p>
+        <h2 className='text-3xl font-bold'>{title}</h2>
+        <p className='text-sm text-muted-foreground'>{description}</p>
       </div>
     </div>
   );

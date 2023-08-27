@@ -22,9 +22,9 @@ const MusicPage = () => {
 
   const form = useForm<z.infer<typeof formShema>>({
     defaultValues: {
-      prompt: "",
+      prompt: ""
     },
-    resolver: zodResolver(formShema),
+    resolver: zodResolver(formShema)
   });
 
   const isLoading = form.formState.isSubmitting;
@@ -34,7 +34,7 @@ const MusicPage = () => {
       setMusic(undefined);
 
       const response = await axios.post("/api/music", {
-        prompt: values.prompt,
+        prompt: values.prompt
       });
       // console.log(response);
       setMusic(response.data.audio);
@@ -50,52 +50,49 @@ const MusicPage = () => {
   return (
     <div>
       <Heading
-        title="Music Generation"
-        description="Turn your prompt into music."
+        title='Music Generation'
+        description='Turn your prompt into music.'
         icon={Music}
-        iconColor="text-emerald-500"
-        bgColor="bg-emerald-500/10"
+        iconColor='text-emerald-500'
+        bgColor='bg-emerald-500/10'
       />
-      <div className="px-4 lg:px-8">
+      <div className='px-4 lg:px-8'>
         <div>
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="rounded-lg border w-full p-4 px-3 md:px-6 focus-within:shadow-sm grid grid-cols-12 gap-2"
+              className='grid w-full grid-cols-12 gap-2 rounded-lg border p-4 px-3 focus-within:shadow-sm md:px-6'
             >
               <FormField
-                name="prompt"
+                name='prompt'
                 render={({ field }) => (
-                  <FormItem className="col-span-12 lg:col-span-10">
-                    <FormControl className="m-0 p-0">
+                  <FormItem className='col-span-12 lg:col-span-10'>
+                    <FormControl className='m-0 p-0'>
                       <Input
-                        className="border-0  outline-none focus-visible:ring-0 focus-visible:ring-transparent"
+                        className='border-0  outline-none focus-visible:ring-0 focus-visible:ring-transparent'
                         disabled={isLoading}
-                        placeholder="Piano solo."
+                        placeholder='Piano solo.'
                         {...field}
                       />
                     </FormControl>
                   </FormItem>
                 )}
               />
-              <Button
-                className="col-span-12 lg:col-span-2 w-full"
-                disabled={isLoading}
-              >
+              <Button className='col-span-12 w-full lg:col-span-2' disabled={isLoading}>
                 Generate
               </Button>
             </form>
           </Form>
         </div>
-        <div className="space-y-4 mt-4">
+        <div className='mt-4 space-y-4'>
           {isLoading && (
-            <div className="p-8 rounded-lg w-full flex items-center justify-center bg-muted">
+            <div className='flex w-full items-center justify-center rounded-lg bg-muted p-8'>
               <Loader />
             </div>
           )}
-          {!music && !isLoading && <Empty label="No music generated" />}
+          {!music && !isLoading && <Empty label='No music generated' />}
           {music && (
-            <audio controls className="w-full mt-8">
+            <audio controls className='mt-8 w-full'>
               <source src={music} />
             </audio>
           )}

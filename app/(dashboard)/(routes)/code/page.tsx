@@ -70,7 +70,7 @@ const CodePage = () => {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className='rounded-lg border w-full p-4 px-3 md:px-6 focus-within:shadow-sm grid grid-cols-12 gap-2'
+              className='grid w-full grid-cols-12 gap-2 rounded-lg border p-4 px-3 focus-within:shadow-sm md:px-6'
             >
               <FormField
                 name='prompt'
@@ -87,15 +87,15 @@ const CodePage = () => {
                   </FormItem>
                 )}
               />
-              <Button className='col-span-12 lg:col-span-2 w-full' disabled={isLoading}>
+              <Button className='col-span-12 w-full lg:col-span-2' disabled={isLoading}>
                 Generate
               </Button>
             </form>
           </Form>
         </div>
-        <div className='space-y-4 mt-4'>
+        <div className='mt-4 space-y-4'>
           {isLoading && (
-            <div className='p-8 rounded-lg w-full flex items-center justify-center bg-muted'>
+            <div className='flex w-full items-center justify-center rounded-lg bg-muted p-8'>
               <Loader />
             </div>
           )}
@@ -107,21 +107,21 @@ const CodePage = () => {
                 <div
                   key={index}
                   className={cn(
-                    "p-8 w-full flex items-start gap-x-8 rounded-lg",
-                    message.role === "user" ? "bg-white border border-black/10" : "bg-muted"
+                    "flex w-full items-start gap-x-8 rounded-lg p-8",
+                    message.role === "user" ? "border border-black/10 bg-white" : "bg-muted"
                   )}
                 >
                   {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
                   <ReactMarkdown
                     components={{
                       pre: ({ node, ...props }) => (
-                        <div className='overflow-auto w-full my-2 bg-black/10 p-2 rounded-lg'>
+                        <div className='my-2 w-full overflow-auto rounded-lg bg-black/10 p-2'>
                           <pre {...props} />
                         </div>
                       ),
-                      code: ({ node, ...props }) => <code className='bg-black/10 rounded-lg p-1' {...props} />
+                      code: ({ node, ...props }) => <code className='rounded-lg bg-black/10 p-1' {...props} />
                     }}
-                    className='text-sm overflow-hidden leading-7'
+                    className='overflow-hidden text-sm leading-7'
                   >
                     {message.content || ""}
                   </ReactMarkdown>
