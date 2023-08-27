@@ -4,7 +4,7 @@ import { Configuration, OpenAIApi } from "openai";
 import { checkApiLimit, increateApiLimit } from "@/lib/api-limit";
 
 const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY
 });
 
 const openai = new OpenAIApi(configuration);
@@ -21,7 +21,7 @@ export async function POST(req: Request) {
 
     if (!configuration.apiKey) {
       return new NextResponse("OpenAI API Key not configured.", {
-        status: 500,
+        status: 500
       });
     }
 
@@ -37,7 +37,7 @@ export async function POST(req: Request) {
 
     const response = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      messages,
+      messages
     });
 
     await increateApiLimit();

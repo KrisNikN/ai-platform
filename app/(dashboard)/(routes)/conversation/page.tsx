@@ -106,8 +106,8 @@ const ConversationPage = () => {
                 <div
                   key={index}
                   className={cn(
-                    "p-8 w-full flex items-start gap-x-8 rounded-lg",
-                    message.role === "user" ? "bg-white border border-black/10" : "bg-muted"
+                    "flex w-full items-start gap-x-8 rounded-lg p-8",
+                    message.role === "user" ? "border border-black/10 bg-white" : "bg-muted"
                   )}
                 >
                   {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
