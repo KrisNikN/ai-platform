@@ -15,10 +15,12 @@ import { useState } from "react";
 import { ChatCompletionRequestMessage } from "openai";
 import { Empty } from "@/components/Empty";
 import { Loader } from "@/components/Loader";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 const MusicPage = () => {
   const router = useRouter();
   const [music, setMusic] = useState<string>();
+  const proModal = useProModal();
 
   const form = useForm<z.infer<typeof formShema>>({
     defaultValues: {
@@ -40,8 +42,9 @@ const MusicPage = () => {
       setMusic(response.data.audio);
       form.reset();
     } catch (error: any) {
-      //TODO: Open PRO MODEL
-      console.log(error);
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      }
     } finally {
       router.refresh();
     }

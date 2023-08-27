@@ -18,10 +18,12 @@ import { cn } from "@/lib/utils";
 import { Select, SelectItem, SelectContent, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 const ImagePage = () => {
   const [images, setImages] = useState<string[]>([]);
   const router = useRouter();
+  const proModal = useProModal();
 
   const form = useForm<z.infer<typeof formShema>>({
     defaultValues: {
@@ -42,8 +44,9 @@ const ImagePage = () => {
       setImages(urls);
       form.reset();
     } catch (error: any) {
-      //TODO: Open PRO MODEL
-      console.log(error);
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      }
     } finally {
       router.refresh();
     }
